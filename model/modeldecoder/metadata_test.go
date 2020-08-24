@@ -26,7 +26,7 @@ import (
 
 	"github.com/elastic/apm-server/model"
 	"github.com/elastic/apm-server/tests"
-	"github.com/elastic/beats/v7/libbeat/common"
+	"github.com/snappyflow/beats/v7/libbeat/common"
 )
 
 const (

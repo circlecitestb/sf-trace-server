@@ -18,7 +18,7 @@
 package model
 
 import (
-	"github.com/elastic/beats/v7/libbeat/common"
+	"github.com/snappyflow/beats/v7/libbeat/common"
 )
 
 // UserExperience holds real user (browser) experience metrics.

@@ -43,9 +43,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/elastic/beats/v7/libbeat/beat"
-	"github.com/elastic/beats/v7/libbeat/common"
-	libidxmgmt "github.com/elastic/beats/v7/libbeat/idxmgmt"
+	"github.com/snappyflow/beats/v7/libbeat/beat"
+	"github.com/snappyflow/beats/v7/libbeat/common"
+	libidxmgmt "github.com/snappyflow/beats/v7/libbeat/idxmgmt"
 )
 
 var (

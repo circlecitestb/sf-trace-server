@@ -5,9 +5,9 @@
 package cmd
 
 import (
-	"github.com/elastic/beats/v7/libbeat/beat"
-	libbeatcmd "github.com/elastic/beats/v7/libbeat/cmd"
-	xpackcmd "github.com/elastic/beats/v7/x-pack/libbeat/cmd"
+	"github.com/snappyflow/beats/v7/libbeat/beat"
+	libbeatcmd "github.com/snappyflow/beats/v7/libbeat/cmd"
+	xpackcmd "github.com/snappyflow/beats/v7/x-pack/libbeat/cmd"
 
 	"github.com/elastic/apm-server/cmd"
 	_ "github.com/elastic/apm-server/x-pack/apm-server/include" // include assets

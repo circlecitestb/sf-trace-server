@@ -127,7 +127,7 @@ go-generate:
 
 notice: NOTICE.txt
 NOTICE.txt: $(PYTHON) go.mod
-	@$(PYTHON) script/generate_notice.py -b "Elastic APM Server" -s "github.com/elastic/beats*" . ./x-pack/apm-server
+	@$(PYTHON) script/generate_notice.py -b "Elastic APM Server" -s "github.com/snappyflow/beats*" . ./x-pack/apm-server
 
 .PHONY: add-headers
 add-headers: $(GOLICENSER)
@@ -166,11 +166,11 @@ copy-docs:
 ##############################################################################
 
 BEATS_VERSION?=master
-BEATS_MODULE=$(shell go list -m -f {{.Path}} all | grep github.com/elastic/beats)
+BEATS_MODULE=$(shell go list -m -f {{.Path}} all | grep github.com/snappyflow/beats)
 
 .PHONY: update-beats
 update-beats: update-beats-module update
-	@echo --- Use this commit message: Update to elastic/beats@$(shell go list -m -f {{.Version}} $(BEATS_MODULE) | cut -d- -f3)
+	@echo --- Use this commit message: Update to snappyflow/beats@$(shell go list -m -f {{.Version}} $(BEATS_MODULE) | cut -d- -f3)
 
 .PHONY: update-beats-module
 update-beats-module:

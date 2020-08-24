@@ -17,5 +17,5 @@
 
 package cmd
 
-// name matches github.com/elastic/beats/v7/dev-tools/mage/settings.go parseBeatVersion
+// name matches github.com/snappyflow/beats/v7/dev-tools/mage/settings.go parseBeatVersion
 const defaultBeatVersion = "8.0.0"

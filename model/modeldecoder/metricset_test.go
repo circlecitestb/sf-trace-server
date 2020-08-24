@@ -23,7 +23,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/elastic/beats/v7/libbeat/common"
+	"github.com/snappyflow/beats/v7/libbeat/common"
 
 	"github.com/stretchr/testify/assert"
 

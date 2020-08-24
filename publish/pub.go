@@ -27,8 +27,8 @@ import (
 	"go.elastic.co/apm"
 
 	"github.com/elastic/apm-server/transform"
-	"github.com/elastic/beats/v7/libbeat/beat"
-	"github.com/elastic/beats/v7/libbeat/common"
+	"github.com/snappyflow/beats/v7/libbeat/beat"
+	"github.com/snappyflow/beats/v7/libbeat/common"
 )
 
 type Reporter func(context.Context, PendingReq) error

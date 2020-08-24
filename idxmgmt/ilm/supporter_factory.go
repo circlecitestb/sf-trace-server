@@ -18,8 +18,8 @@
 package ilm
 
 import (
-	libilm "github.com/elastic/beats/v7/libbeat/idxmgmt/ilm"
-	"github.com/elastic/beats/v7/libbeat/logp"
+	libilm "github.com/snappyflow/beats/v7/libbeat/idxmgmt/ilm"
+	"github.com/snappyflow/beats/v7/libbeat/logp"
 
 	logs "github.com/elastic/apm-server/log"
 )

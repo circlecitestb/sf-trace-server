@@ -22,7 +22,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/elastic/beats/v7/libbeat/beat"
+	"github.com/snappyflow/beats/v7/libbeat/beat"
 )
 
 // waitPublishedAcker is a beat.ACKer which keeps track of the number of

@@ -22,7 +22,7 @@ import (
 
 	gocache "github.com/patrickmn/go-cache"
 
-	"github.com/elastic/beats/v7/libbeat/logp"
+	"github.com/snappyflow/beats/v7/libbeat/logp"
 )
 
 const (

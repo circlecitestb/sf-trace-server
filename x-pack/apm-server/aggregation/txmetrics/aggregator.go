@@ -15,7 +15,7 @@ import (
 	"github.com/cespare/xxhash/v2"
 	"github.com/pkg/errors"
 
-	"github.com/elastic/beats/v7/libbeat/logp"
+	"github.com/snappyflow/beats/v7/libbeat/logp"
 	"github.com/elastic/go-hdrhistogram"
 
 	logs "github.com/elastic/apm-server/log"

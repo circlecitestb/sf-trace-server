@@ -22,7 +22,7 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/elastic/beats/v7/libbeat/common"
+	"github.com/snappyflow/beats/v7/libbeat/common"
 
 	"github.com/elastic/apm-server/utility"
 )

@@ -22,13 +22,13 @@ import (
 
 	"github.com/spf13/pflag"
 
-	"github.com/elastic/beats/v7/libbeat/beat"
-	"github.com/elastic/beats/v7/libbeat/cfgfile"
-	"github.com/elastic/beats/v7/libbeat/cmd"
-	"github.com/elastic/beats/v7/libbeat/cmd/instance"
-	"github.com/elastic/beats/v7/libbeat/common"
-	"github.com/elastic/beats/v7/libbeat/monitoring/report"
-	"github.com/elastic/beats/v7/libbeat/publisher/processing"
+	"github.com/snappyflow/beats/v7/libbeat/beat"
+	"github.com/snappyflow/beats/v7/libbeat/cfgfile"
+	"github.com/snappyflow/beats/v7/libbeat/cmd"
+	"github.com/snappyflow/beats/v7/libbeat/cmd/instance"
+	"github.com/snappyflow/beats/v7/libbeat/common"
+	"github.com/snappyflow/beats/v7/libbeat/monitoring/report"
+	"github.com/snappyflow/beats/v7/libbeat/publisher/processing"
 
 	"github.com/elastic/apm-server/idxmgmt"
 	_ "github.com/elastic/apm-server/include" // include assets

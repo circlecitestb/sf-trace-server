@@ -32,7 +32,7 @@
   * update versions in release branch, e.g. [#2803](https://github.com/elastic/apm-server/pull/2803/files)
   * update versions in `major.x` branch to next minor version, e.g. [#2804](https://github.com/elastic/apm-server/pull/2804)
 
-* Update to latest changes of [beats](https://github.com/elastic/beats/pulls/)
+* Update to latest changes of [beats](https://github.com/snappyflow/beats/pulls/)
 
   When beats has merged all PRs and for minor releases created the new branch, update beats again.
 

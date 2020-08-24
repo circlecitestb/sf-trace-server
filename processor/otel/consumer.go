@@ -32,8 +32,8 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector/consumer/consumerdata"
 	tracetranslator "github.com/open-telemetry/opentelemetry-collector/translator/trace"
 
-	"github.com/elastic/beats/v7/libbeat/common"
-	"github.com/elastic/beats/v7/libbeat/logp"
+	"github.com/snappyflow/beats/v7/libbeat/common"
+	"github.com/snappyflow/beats/v7/libbeat/logp"
 
 	logs "github.com/elastic/apm-server/log"
 	"github.com/elastic/apm-server/model"

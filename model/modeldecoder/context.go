@@ -25,7 +25,7 @@ import (
 	"github.com/elastic/apm-server/model"
 	"github.com/elastic/apm-server/model/modeldecoder/field"
 
-	"github.com/elastic/beats/v7/libbeat/common"
+	"github.com/snappyflow/beats/v7/libbeat/common"
 
 	"github.com/elastic/apm-server/utility"
 )

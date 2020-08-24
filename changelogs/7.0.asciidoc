@@ -44,10 +44,10 @@ Also see:
 - Add `observer.version_major` {pull}1857[1857].
 - Move default index configuration to code {pull}1865[1865].
 - Change default user-agent pipeline to index information under root key `user_agent` {pull}1871[1871].
-- Use _doc as document type for Elasticsearch >= 7.0.0 https://github.com/elastic/beats/pull/9056[beats/9057].
-- Automatically cap signed integers to 63bits https://github.com/elastic/beats/pull/8991[beats/8991].
+- Use _doc as document type for Elasticsearch >= 7.0.0 https://github.com/snappyflow/beats/pull/9056[beats/9057].
+- Automatically cap signed integers to 63bits https://github.com/snappyflow/beats/pull/8991[beats/8991].
 - Build default distribution under the Elastic License. {pull}1645[1645].
-- Log to journald under systemd by default rather than file. To revert this behaviour override BEAT_LOG_OPTS with an empty value https://github.com/elastic/beats/pull/8942[beats/8942] via {pull}1645[1645].
+- Log to journald under systemd by default rather than file. To revert this behaviour override BEAT_LOG_OPTS with an empty value https://github.com/snappyflow/beats/pull/8942[beats/8942] via {pull}1645[1645].
 
 [float]
 ==== Removed
@@ -146,10 +146,10 @@ https://github.com/elastic/apm-server/compare/v7.0.0-alpha1\...v7.0.0-alpha2[Vie
 ==== Added
 
 - Update Go to 1.11.2 {pull}1605[1605].
-- Use _doc as document type for Elasticsearch >= 7.0.0 https://github.com/elastic/beats/pull/9056[beats/9057].
-- Automatically cap signed integers to 63bits https://github.com/elastic/beats/pull/8991[beats/8991].
+- Use _doc as document type for Elasticsearch >= 7.0.0 https://github.com/snappyflow/beats/pull/9056[beats/9057].
+- Automatically cap signed integers to 63bits https://github.com/snappyflow/beats/pull/8991[beats/8991].
 - Build default distribution under the Elastic License. {pull}1645[1645].
-- Log to journald under systemd by default rather than file. To revert this behaviour override BEAT_LOG_OPTS with an empty value https://github.com/elastic/beats/pull/8942[beats/8942] via {pull}1645[1645].
+- Log to journald under systemd by default rather than file. To revert this behaviour override BEAT_LOG_OPTS with an empty value https://github.com/snappyflow/beats/pull/8942[beats/8942] via {pull}1645[1645].
 
 [float]
 [[release-notes-7.0.0-alpha1]]

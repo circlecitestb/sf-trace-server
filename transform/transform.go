@@ -21,7 +21,7 @@ import (
 	"context"
 	"regexp"
 
-	"github.com/elastic/beats/v7/libbeat/beat"
+	"github.com/snappyflow/beats/v7/libbeat/beat"
 
 	"github.com/elastic/apm-server/sourcemap"
 )

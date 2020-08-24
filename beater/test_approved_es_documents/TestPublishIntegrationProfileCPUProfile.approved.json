@@ -2520,26 +2520,26 @@
                         "line": 820
                     },
                     {
-                        "filename": "/home/andrew/go/src/github.com/elastic/apm-server/vendor/github.com/elastic/beats/libbeat/common/mapstr.go",
-                        "function": "github.com/elastic/apm-server/vendor/github.com/elastic/beats/libbeat/common.MapStr.Clone",
+                        "filename": "/home/andrew/go/src/github.com/elastic/apm-server/vendor/github.com/snappyflow/beats/libbeat/common/mapstr.go",
+                        "function": "github.com/elastic/apm-server/vendor/github.com/snappyflow/beats/libbeat/common.MapStr.Clone",
                         "id": "708fad2ff98dbd3e",
                         "line": 130
                     },
                     {
-                        "filename": "/home/andrew/go/src/github.com/elastic/apm-server/vendor/github.com/elastic/beats/libbeat/publisher/processing/default.go",
-                        "function": "github.com/elastic/apm-server/vendor/github.com/elastic/beats/libbeat/publisher/processing.(*builder).Create",
+                        "filename": "/home/andrew/go/src/github.com/elastic/apm-server/vendor/github.com/snappyflow/beats/libbeat/publisher/processing/default.go",
+                        "function": "github.com/elastic/apm-server/vendor/github.com/snappyflow/beats/libbeat/publisher/processing.(*builder).Create",
                         "id": "47f4903505c51455",
                         "line": 286
                     },
                     {
-                        "filename": "/home/andrew/go/src/github.com/elastic/apm-server/vendor/github.com/elastic/beats/libbeat/publisher/pipeline/pipeline.go",
-                        "function": "github.com/elastic/apm-server/vendor/github.com/elastic/beats/libbeat/publisher/pipeline.(*Pipeline).createEventProcessing",
+                        "filename": "/home/andrew/go/src/github.com/elastic/apm-server/vendor/github.com/snappyflow/beats/libbeat/publisher/pipeline/pipeline.go",
+                        "function": "github.com/elastic/apm-server/vendor/github.com/snappyflow/beats/libbeat/publisher/pipeline.(*Pipeline).createEventProcessing",
                         "id": "1d284b9d30acf518",
                         "line": 468
                     },
                     {
-                        "filename": "/home/andrew/go/src/github.com/elastic/apm-server/vendor/github.com/elastic/beats/libbeat/publisher/pipeline/pipeline.go",
-                        "function": "github.com/elastic/apm-server/vendor/github.com/elastic/beats/libbeat/publisher/pipeline.(*Pipeline).ConnectWith",
+                        "filename": "/home/andrew/go/src/github.com/elastic/apm-server/vendor/github.com/snappyflow/beats/libbeat/publisher/pipeline/pipeline.go",
+                        "function": "github.com/elastic/apm-server/vendor/github.com/snappyflow/beats/libbeat/publisher/pipeline.(*Pipeline).ConnectWith",
                         "id": "e91041d04de8962e",
                         "line": 333
                     },

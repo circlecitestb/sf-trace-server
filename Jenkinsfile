@@ -73,7 +73,7 @@ pipeline {
               "^ingest.*",
               "^packaging.*",
               "^tests/packaging.*",
-              "^vendor/github.com/elastic/beats.*"
+              "^vendor/github.com/snappyflow/beats.*"
             ]
             env.BEATS_UPDATED = isGitRegionMatch(patterns: regexps)
 

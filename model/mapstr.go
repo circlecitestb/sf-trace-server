@@ -17,7 +17,7 @@
 
 package model
 
-import "github.com/elastic/beats/v7/libbeat/common"
+import "github.com/snappyflow/beats/v7/libbeat/common"
 
 type mapStr common.MapStr
 

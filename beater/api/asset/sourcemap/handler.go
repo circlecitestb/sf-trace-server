@@ -25,7 +25,7 @@ import (
 
 	"go.elastic.co/apm"
 
-	"github.com/elastic/beats/v7/libbeat/monitoring"
+	"github.com/snappyflow/beats/v7/libbeat/monitoring"
 
 	"github.com/elastic/apm-server/beater/request"
 	"github.com/elastic/apm-server/processor/asset"

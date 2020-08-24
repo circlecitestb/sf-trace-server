@@ -21,13 +21,13 @@ import (
 	"fmt"
 	"time"
 
-	libcommon "github.com/elastic/beats/v7/libbeat/common"
+	libcommon "github.com/snappyflow/beats/v7/libbeat/common"
 
 	"github.com/pkg/errors"
 
-	"github.com/elastic/beats/v7/libbeat/beat"
-	"github.com/elastic/beats/v7/libbeat/common/fmtstr"
-	libilm "github.com/elastic/beats/v7/libbeat/idxmgmt/ilm"
+	"github.com/snappyflow/beats/v7/libbeat/beat"
+	"github.com/snappyflow/beats/v7/libbeat/common/fmtstr"
+	libilm "github.com/snappyflow/beats/v7/libbeat/idxmgmt/ilm"
 
 	"github.com/elastic/apm-server/idxmgmt/common"
 )

@@ -27,13 +27,13 @@ import (
 
 	"go.elastic.co/apm/apmtest"
 
-	"github.com/elastic/beats/v7/libbeat/beat"
-	"github.com/elastic/beats/v7/libbeat/common"
-	"github.com/elastic/beats/v7/libbeat/outputs"
-	"github.com/elastic/beats/v7/libbeat/publisher"
-	"github.com/elastic/beats/v7/libbeat/publisher/pipeline"
-	"github.com/elastic/beats/v7/libbeat/publisher/queue"
-	"github.com/elastic/beats/v7/libbeat/publisher/queue/memqueue"
+	"github.com/snappyflow/beats/v7/libbeat/beat"
+	"github.com/snappyflow/beats/v7/libbeat/common"
+	"github.com/snappyflow/beats/v7/libbeat/outputs"
+	"github.com/snappyflow/beats/v7/libbeat/publisher"
+	"github.com/snappyflow/beats/v7/libbeat/publisher/pipeline"
+	"github.com/snappyflow/beats/v7/libbeat/publisher/queue"
+	"github.com/snappyflow/beats/v7/libbeat/publisher/queue/memqueue"
 
 	"github.com/elastic/apm-server/publish"
 	"github.com/elastic/apm-server/transform"

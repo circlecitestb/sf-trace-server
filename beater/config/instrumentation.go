@@ -20,7 +20,7 @@ package config
 import (
 	"time"
 
-	"github.com/elastic/beats/v7/libbeat/logp"
+	"github.com/snappyflow/beats/v7/libbeat/logp"
 	"github.com/elastic/go-ucfg"
 )
 

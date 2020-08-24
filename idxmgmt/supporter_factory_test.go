@@ -24,9 +24,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/elastic/beats/v7/libbeat/beat"
-	"github.com/elastic/beats/v7/libbeat/common"
-	libilm "github.com/elastic/beats/v7/libbeat/idxmgmt/ilm"
+	"github.com/snappyflow/beats/v7/libbeat/beat"
+	"github.com/snappyflow/beats/v7/libbeat/common"
+	libilm "github.com/snappyflow/beats/v7/libbeat/idxmgmt/ilm"
 
 	"github.com/elastic/apm-server/idxmgmt/unmanaged"
 )

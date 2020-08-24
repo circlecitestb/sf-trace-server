@@ -22,7 +22,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/elastic/beats/v7/libbeat/monitoring"
+	"github.com/snappyflow/beats/v7/libbeat/monitoring"
 )
 
 // debugVarsHandler reports expvar and all libbeat/monitoring metrics.

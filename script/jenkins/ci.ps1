@@ -35,7 +35,7 @@ $env:RACE_DETECTOR = "true"
 exec { go install github.com/elastic/apm-server/vendor/github.com/magefile/mage }
 
 echo "Fetching testing dependencies"
-# TODO (elastic/beats#5050): Use a vendored copy of this.
+# TODO (snappyflow/beats#5050): Use a vendored copy of this.
 exec { go get github.com/docker/libcompose }
 
 if (Test-Path "build") { Remove-Item -Recurse -Force build }

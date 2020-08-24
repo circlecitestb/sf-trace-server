@@ -22,7 +22,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	libtemplate "github.com/elastic/beats/v7/libbeat/template"
+	libtemplate "github.com/snappyflow/beats/v7/libbeat/template"
 )
 
 func TestTemplate_ILMEnabled(t *testing.T) {

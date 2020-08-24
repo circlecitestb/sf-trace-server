@@ -20,11 +20,11 @@ package idxmgmt
 import (
 	"fmt"
 
-	"github.com/elastic/beats/v7/libbeat/beat"
-	"github.com/elastic/beats/v7/libbeat/common"
-	"github.com/elastic/beats/v7/libbeat/idxmgmt"
-	"github.com/elastic/beats/v7/libbeat/logp"
-	"github.com/elastic/beats/v7/libbeat/template"
+	"github.com/snappyflow/beats/v7/libbeat/beat"
+	"github.com/snappyflow/beats/v7/libbeat/common"
+	"github.com/snappyflow/beats/v7/libbeat/idxmgmt"
+	"github.com/snappyflow/beats/v7/libbeat/logp"
+	"github.com/snappyflow/beats/v7/libbeat/template"
 
 	"github.com/elastic/apm-server/idxmgmt/ilm"
 	logs "github.com/elastic/apm-server/log"

@@ -28,9 +28,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/elastic/beats/v7/libbeat/beat"
-	"github.com/elastic/beats/v7/libbeat/common"
-	"github.com/elastic/beats/v7/libbeat/monitoring"
+	"github.com/snappyflow/beats/v7/libbeat/beat"
+	"github.com/snappyflow/beats/v7/libbeat/common"
+	"github.com/snappyflow/beats/v7/libbeat/monitoring"
 
 	"github.com/elastic/apm-server/transform"
 	"github.com/elastic/apm-server/utility"

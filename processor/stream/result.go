@@ -20,7 +20,7 @@ package stream
 import (
 	"strings"
 
-	"github.com/elastic/beats/v7/libbeat/monitoring"
+	"github.com/snappyflow/beats/v7/libbeat/monitoring"
 )
 
 type Error struct {

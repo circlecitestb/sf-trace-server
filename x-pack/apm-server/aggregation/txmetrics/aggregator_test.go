@@ -22,7 +22,7 @@ import (
 	"github.com/elastic/apm-server/publish"
 	"github.com/elastic/apm-server/transform"
 	"github.com/elastic/apm-server/x-pack/apm-server/aggregation/txmetrics"
-	"github.com/elastic/beats/v7/libbeat/logp"
+	"github.com/snappyflow/beats/v7/libbeat/logp"
 )
 
 func TestNewAggregatorConfigInvalid(t *testing.T) {

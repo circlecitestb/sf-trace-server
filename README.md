@@ -109,7 +109,7 @@ below.
 
 ### Updating libbeat
 
-By running `make update-beats` the `github.com/elastic/beats/vN` module will be updated to the most recent
+By running `make update-beats` the `github.com/snappyflow/beats/vN` module will be updated to the most recent
 commit from the master branch, and a minimal set of files will be copied into the apm-server tree.
 
 You can specify an alternative branch or commit by specifying the `BEATS_VERSION` variable, such as:

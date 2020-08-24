@@ -35,10 +35,10 @@ import (
 	"github.com/magefile/mage/sh"
 	"github.com/pkg/errors"
 
-	"github.com/elastic/beats/v7/dev-tools/mage"
-	"github.com/elastic/beats/v7/libbeat/asset"
-	"github.com/elastic/beats/v7/libbeat/generator/fields"
-	"github.com/elastic/beats/v7/licenses"
+	"github.com/snappyflow/beats/v7/dev-tools/mage"
+	"github.com/snappyflow/beats/v7/libbeat/asset"
+	"github.com/snappyflow/beats/v7/libbeat/generator/fields"
+	"github.com/snappyflow/beats/v7/licenses"
 
 	"github.com/elastic/apm-server/beater/config"
 )

@@ -23,9 +23,9 @@ import (
 
 	logs "github.com/elastic/apm-server/log"
 
-	"github.com/elastic/beats/v7/libbeat/esleg/eslegclient"
-	"github.com/elastic/beats/v7/libbeat/logp"
-	"github.com/elastic/beats/v7/libbeat/paths"
+	"github.com/snappyflow/beats/v7/libbeat/esleg/eslegclient"
+	"github.com/snappyflow/beats/v7/libbeat/logp"
+	"github.com/snappyflow/beats/v7/libbeat/paths"
 )
 
 func RegisterPipelines(conn *eslegclient.Connection, overwrite bool, path string) error {

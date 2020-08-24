@@ -38,7 +38,7 @@ def read_go_deps(main_packages, build_tags):
        e.g. "$HOME/go/pkg/mod/github.com/elastic/go-txfile@v0.0.7"
 
      - Path (required)
-       Module path. e.g. "github.com/elastic/beats".
+       Module path. e.g. "github.com/snappyflow/beats".
 
      - Replacement (optional)
        Replacement module path. e.g. "../beats", or "github.com/elastic/sarama".

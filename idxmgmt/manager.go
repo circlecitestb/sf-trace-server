@@ -22,8 +22,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	libidxmgmt "github.com/elastic/beats/v7/libbeat/idxmgmt"
-	libilm "github.com/elastic/beats/v7/libbeat/idxmgmt/ilm"
+	libidxmgmt "github.com/snappyflow/beats/v7/libbeat/idxmgmt"
+	libilm "github.com/snappyflow/beats/v7/libbeat/idxmgmt/ilm"
 
 	"github.com/elastic/apm-server/idxmgmt/common"
 	"github.com/elastic/apm-server/idxmgmt/ilm"

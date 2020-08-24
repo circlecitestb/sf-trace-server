@@ -20,7 +20,7 @@ package config
 import (
 	"crypto/tls"
 
-	"github.com/elastic/beats/v7/libbeat/common/transport/tlscommon"
+	"github.com/snappyflow/beats/v7/libbeat/common/transport/tlscommon"
 )
 
 const (

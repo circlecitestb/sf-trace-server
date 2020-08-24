@@ -35,7 +35,7 @@ import (
 	"github.com/elastic/apm-server/tests"
 	"github.com/elastic/apm-server/transform"
 
-	"github.com/elastic/beats/v7/libbeat/common"
+	"github.com/snappyflow/beats/v7/libbeat/common"
 )
 
 func baseException() *Exception {

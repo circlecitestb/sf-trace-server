@@ -1,7 +1,7 @@
 # APM Server-Testing
 
 ## Automated Testing
-The tests are built on top of the [Beats Test Framework](https://github.com/elastic/beats/blob/master/docs/devguide/testing.asciidoc), where you can find a detailed description on how to run the test suite.
+The tests are built on top of the [Beats Test Framework](https://github.com/snappyflow/beats/blob/master/docs/devguide/testing.asciidoc), where you can find a detailed description on how to run the test suite.
 
 ### Quick Overview
 

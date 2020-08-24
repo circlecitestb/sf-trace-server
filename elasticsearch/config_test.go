@@ -27,7 +27,7 @@ import (
 	"testing"
 
 	// Imported to ensure the type data is available for reflection.
-	_ "github.com/elastic/beats/v7/libbeat/outputs/elasticsearch"
+	_ "github.com/snappyflow/beats/v7/libbeat/outputs/elasticsearch"
 
 	"github.com/modern-go/reflect2"
 	"github.com/stretchr/testify/assert"
@@ -102,7 +102,7 @@ func TestAddresses(t *testing.T) {
 // kept in sync with the config defined in libbeat/outputs/elasticsearch.
 func TestBeatsConfigSynced(t *testing.T) {
 	libbeatType, _ := reflect2.TypeByPackageName(
-		"github.com/elastic/beats/v7/libbeat/outputs/elasticsearch",
+		"github.com/snappyflow/beats/v7/libbeat/outputs/elasticsearch",
 		"elasticsearchConfig",
 	).(reflect2.StructType)
 	require.NotNil(t, libbeatType)

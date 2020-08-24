@@ -20,7 +20,7 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/elastic/beats/v7/libbeat/monitoring"
+	"github.com/snappyflow/beats/v7/libbeat/monitoring"
 
 	"github.com/elastic/apm-server/beater/request"
 )

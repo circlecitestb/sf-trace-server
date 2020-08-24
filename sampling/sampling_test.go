@@ -28,7 +28,7 @@ import (
 	"github.com/elastic/apm-server/publish"
 	"github.com/elastic/apm-server/sampling"
 	"github.com/elastic/apm-server/transform"
-	"github.com/elastic/beats/v7/libbeat/monitoring"
+	"github.com/snappyflow/beats/v7/libbeat/monitoring"
 )
 
 func TestNewDiscardUnsampledReporter(t *testing.T) {
