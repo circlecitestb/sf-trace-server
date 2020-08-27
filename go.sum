@@ -895,6 +895,8 @@ github.com/snappyflow/beats/v7 v7.0.0-alpha2.0.20200820005814-38fc1ed06525 h1:bZ
 github.com/snappyflow/beats/v7 v7.0.0-alpha2.0.20200820005814-38fc1ed06525/go.mod h1:7OMQ2wQnxVdtObexAgHJ/QBoOwIf26FWEFtcLDKFwR0=
 github.com/snappyflow/beats/v7 v7.0.0 h1:kPvZ77RA7t+y7709n1QFM2Lt31PaFxc0R3CcvnlYRvc=
 github.com/snappyflow/beats/v7 v7.0.0/go.mod h1:Cedm6dczcvDi87ptv5su0B6GrGObr7YojRhiPRd69UM=
+github.com/snappyflow/beats/v7 v7.0.6 h1:vCb28aDbVu5bPXwAHWcBhXevwrH5uNw5Mepat+jiHHM=
+github.com/snappyflow/beats/v7 v7.0.6/go.mod h1:Cedm6dczcvDi87ptv5su0B6GrGObr7YojRhiPRd69UM=
 github.com/snappyflow/beats/v7 v7.9.0 h1:puf3k3gJJUGoUnO0jj4pnEuI+kftLw27A83T9gW0nk0=
 github.com/snappyflow/beats/v7 v7.9.0/go.mod h1:UQazNYihDNvX0rYZ98pq1ol8AbEA0LY+ehLLuySQIqQ=
 github.com/soheilhy/cmux v0.1.4/go.mod h1:IM3LyeVVIOuxMH7sFAkER9+bJ4dT7Ms6E4xg4kGIyLM=
