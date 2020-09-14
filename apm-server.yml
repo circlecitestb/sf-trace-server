@@ -937,6 +937,22 @@ output.elasticsearch:
   # Kerberos realm.
   #kerberos.realm: ELASTIC
 
+#------------------------------ Kafka Rest output ------------------------------
+#output.kafkarest:
+  # Boolean flag to enable or disable the output module.
+  #enabled: false
+
+  # The Kafka rest proxy address where to send data to
+  #hosts: ["localhost:8082"]
+
+  # Authorization Token
+  #token: ""
+
+  # The maximum number of events to bulk in a single Kafka request. The default
+  # is 50.
+  #bulk_max_size: 50
+
+
 #============================= Instrumentation =============================
 
 # Instrumentation support for the server's HTTP endpoints and event publisher.
