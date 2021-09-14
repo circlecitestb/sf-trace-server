@@ -20,6 +20,7 @@ WORKDIR $APM_SERVER_PATH
 
 COPY . $APM_SERVER_PATH
 
+# Use OSS version of apm-server
 RUN make apm-server-oss
 RUN mv /usr/share/apm-server/apm-server-oss /usr/share/apm-server/apm-server
 
