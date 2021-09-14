@@ -20,7 +20,8 @@ WORKDIR $APM_SERVER_PATH
 
 COPY . $APM_SERVER_PATH
 
-RUN make
+RUN make apm-server-oss
+RUN mv /usr/share/apm-server/apm-server-oss /usr/share/apm-server/apm-server
 
 #CMD ./apm-server -e -d "*"
 ENTRYPOINT ["/usr/share/apm-server/apm-server", "-c", "/usr/share/apm-server/apm-server.yml"]
