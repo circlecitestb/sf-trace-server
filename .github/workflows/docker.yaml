@@ -20,6 +20,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: snappyflowml/sftrace-server
           dockerfile: Dockerfile
-          tags: 1.0
+          tags: latest
           tag_with_ref: true
           tag_with_sha: true
