@@ -13,7 +13,6 @@ require (
 	github.com/dop251/goja v0.0.0-20200818110326-5574b5dbd2b9 // indirect
 	github.com/dop251/goja_nodejs v0.0.0-20200811150831-9bc458b4bbeb // indirect
 	github.com/dustin/go-humanize v0.0.0-20171111073723-bb3d318650d4
-	github.com/snappyflow/beats/v7 v7.0.8
 	github.com/elastic/go-elasticsearch/v7 v7.8.0
 	github.com/elastic/go-elasticsearch/v8 v8.0.0-20200819071622-59b6a186f8dd
 	github.com/elastic/go-hdrhistogram v0.1.0
@@ -48,6 +47,7 @@ require (
 	github.com/reviewdog/reviewdog v0.9.17
 	github.com/ryanuber/go-glob v0.0.0-20170128012129-256dc444b735
 	github.com/santhosh-tekuri/jsonschema v1.2.4
+	github.com/snappyflow/beats/v7 v7.0.9
 	github.com/spf13/cobra v0.0.5
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.6.1
