@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: wangyoucao577/go-release-action@v1.22
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GB_TOKEN }}
         goos: linux
         goarch: amd64
         goversion: 1.16
@@ -19,7 +19,7 @@ jobs:
         overwrite: true
     - uses: wangyoucao577/go-release-action@v1.22
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GB_TOKEN }}
         goos: linux
         goarch: amd64
         goversion: 1.16
