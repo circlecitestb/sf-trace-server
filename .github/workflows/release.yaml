@@ -1,3 +1,4 @@
+ame: build binary
 on: 
   release:
     types: [created]
