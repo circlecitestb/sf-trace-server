@@ -1,0 +1,29 @@
+on: 
+  release:
+    types: [created]
+
+jobs:
+  releases-apm-server:
+    name: Release APM Server binary
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: wangyoucao577/go-release-action@v1.22
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        goos: linux
+        goarch: amd64
+        goversion: 1.16
+        binary_name: "apm-server"
+        build_command: "make"
+        overwrite: true
+    - uses: wangyoucao577/go-release-action@v1.22
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        goos: linux
+        goarch: amd64
+        goversion: 1.16
+        binary_name: "apm-server-oss"
+        build_command: "make apm-server-oss"
+        overwrite: true
+
