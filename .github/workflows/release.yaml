@@ -1,4 +1,4 @@
-ame: build binary
+name: build binary
 on: 
   release:
     types: [created]
