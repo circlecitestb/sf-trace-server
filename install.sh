@@ -27,7 +27,7 @@ function configure_apm_server {
     mv /etc/apm-server/apm-server.yml /etc/apm-server/apm-server.yml.copy
     cat > /etc/apm-server/apm-server.yml <<EOF
 apm-server:
-  host: 0.0.0.0:8201
+  host: 0.0.0.0:8200
   jaeger:
     http:
       enabled: true
@@ -51,8 +51,8 @@ EOF
 
 
 function create_service_file {
-    if [ ! -f /usr/lib/systemd/system/apm-server.service ]; then
-	cat > /usr/lib/systemd/system/apm-server.service <<EOF
+    if [ ! -f /etc/systemd/system/apm-server.service ]; then
+	cat > /etc/systemd/system/apm-server.service <<EOF
 [Unit]
 Description=Elastic APM Server
 Documentation=https://www.elastic.co/solutions/apm
