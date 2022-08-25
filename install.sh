@@ -28,6 +28,7 @@ function configure_apm_server {
     cat > /etc/apm-server/apm-server.yml <<EOF
 apm-server:
   host: 0.0.0.0:8200
+  rum.enabled: true
   jaeger:
     http:
       enabled: true
