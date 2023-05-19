@@ -77,3 +77,13 @@
                   type: long
                   description: >
                     Age of a message in milliseconds.
+
+          - name: session
+            type: group
+            dynamic: false
+            fields:
+              - name: id
+                type: keyword
+                
+              - name: sequence
+                type: long
