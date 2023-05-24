@@ -134,6 +134,7 @@ func decodeTransaction(input Input, schema *jsonschema.Schema) (*model.Transacti
 
 	fieldName := field.Mapper(input.Config.HasShortFieldNames)
 	ctx, err := decodeContext(getObject(raw, fieldName("context")), input.Config, &input.Metadata)
+	session, err := decodeSession(getObject(raw, fieldName("session")), input.Config.HasShortFieldNames, err)
 	if err != nil {
 		return nil, err
 	}
@@ -150,6 +151,7 @@ func decodeTransaction(input Input, schema *jsonschema.Schema) (*model.Transacti
 		Sampled:      decoder.BoolPtr(raw, fieldName("sampled")),
 		Marks:        decodeV2Marks(getObject(raw, fieldName("marks"))),
 		Timestamp:    decoder.TimeEpochMicro(raw, fieldName("timestamp")),
+		Session:      session,
 		SpanCount: model.SpanCount{
 			Dropped: decoder.IntPtr(raw, fieldName("dropped"), fieldName("span_count")),
 			Started: decoder.IntPtr(raw, fieldName("started"), fieldName("span_count"))},
@@ -250,4 +252,18 @@ func decodeRUMV3Marks(raw map[string]interface{}, cfg Config) model.TransactionM
 		"loadEventEnd",
 	)
 	return marks
+}
+
+// decodes the session details from given transaction
+func decodeSession(sessionInput map[string]interface{}, hasShortFieldNames bool, err error) (*model.Session, error) {
+	if sessionInput == nil {
+		return &model.Session{}, nil
+	}
+	decoder := utility.ManualDecoder{}
+	fieldName := field.Mapper(hasShortFieldNames)
+	session := &model.Session{
+		ID:       decoder.StringPtr(sessionInput, fieldName("id")),
+		Sequence: decoder.IntPtr(sessionInput, fieldName("sequence")),
+	}
+	return session, decoder.Err
 }
