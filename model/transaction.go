@@ -40,6 +40,12 @@ var (
 	transactionProcessorEntry  = common.MapStr{"name": transactionProcessorName, "event": transactionDocType}
 )
 
+// Session holds all information sent under key session
+type Session struct {
+	ID       *string
+	Sequence *int
+}
+
 type Transaction struct {
 	Metadata Metadata
 
@@ -63,6 +69,7 @@ type Transaction struct {
 	Labels         *Labels
 	Custom         *Custom
 	UserExperience *UserExperience
+	Session        *Session
 
 	Experimental interface{}
 
@@ -91,6 +98,7 @@ func (e *Transaction) fields() common.MapStr {
 	fields.maybeSetMapStr("custom", e.Custom.Fields())
 	fields.maybeSetMapStr("message", e.Message.Fields())
 	fields.maybeSetMapStr("experience", e.UserExperience.Fields())
+	fields.maybeSetMapStr("session", e.Session.Fields())
 	if e.SpanCount.Dropped != nil || e.SpanCount.Started != nil {
 		spanCount := common.MapStr{}
 		if e.SpanCount.Dropped != nil {
@@ -165,4 +173,16 @@ func (m TransactionMark) fields() common.MapStr {
 		out[k] = common.Float(v)
 	}
 	return out
+}
+
+// Fields returns common.MapStr holding transformed data for attribute session.
+func (session *Session) Fields() common.MapStr {
+	if session == nil {
+		return nil
+	}
+	var fields = common.MapStr{}
+	// Remove in 8.0
+	utility.Set(fields, "id", session.ID)
+	utility.Set(fields, "sequence", session.Sequence)
+	return fields
 }
