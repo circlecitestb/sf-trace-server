@@ -128,9 +128,9 @@ jobs:
                sleep 30
              done
   
-  ### updateHelmCharts: This job updates the master branch of helm charts with updated docker image 
+  ### updateMasterHelmCharts: This job updates the master branch of helm charts with updated docker image 
   ### tags. Operates on master branch.
-  updateHelmCharts:
+  updateMasterHelmCharts:
     executor: ubuntumachineimage
     steps:
       - checkout
@@ -147,14 +147,27 @@ jobs:
           directory: "charts/sfapm-python3/charts/sftrace"
           imageversion: "${IMAGETAG}"
           gitbranch: "master1"
-          helmurl: "${HELMURL}"
+          helmurl: "${HELMURL}"   
+  ### updateHelmCharts: This job updates the development branch of helm charts with updated docker image 
+  ### tags. Operates on development branch.
+  updateDevelopmentHelmCharts:
+    executor: ubuntumachineimage
+    steps:
+      - checkout
+      - run: 
+          command: << pipeline.parameters.tag-gen-command >>
+      - run:
+          command: |
+            URL=https://${GITTOKEN}@github.com/Asraf-Khan-ML/helm-charts.git
+            echo "HELMURL=$URL" >> $BASH_ENV
+            pwd
       - orbsdk/update_helm_charts:
           gittoken: "${GITTOKEN}"
           gituser: "${GITUSER}"
           directory: "charts/sfapm-python3/charts/sftrace"
           imageversion: "${IMAGETAG}"
           gitbranch: "development1"
-          helmurl: "${HELMURL}"          
+          helmurl: "${HELMURL}"                
   
   ### reTagSubcomponents: This job updates the docker image tags for all the sub component 
   ### basically pulls latest, retag it and push again.
@@ -265,22 +278,29 @@ workflows:
           requires:
             - wait   
             - Verifying_Approver                
-      - updateHelmCharts:
+      - updateMasterHelmCharts:
           context: Build_Env_Vars
           filters: *filters
           requires:
             - wait
             - Verifying_Approver
-            - reTagSubcomponents                    
+            - reTagSubcomponents
+      - updateDevelopmentHelmCharts:
+          context: Build_Env_Vars
+          filters: *filters
+          requires:
+            - wait
+            - Verifying_Approver
+            - reTagSubcomponents                                 
       - releaseGitTag:
           context: Build_Env_Vars
           requires:
             - reTagSubcomponents
-            - updateHelmCharts
+            - updateMasterHelmCharts
       - updateBaseRevision:
           context: Build_Env_Vars
           filters: *filters
           requires:
             - reTagSubcomponents
-            - updateHelmCharts
+            - updateMasterHelmCharts
             - releaseGitTag
