@@ -3,15 +3,15 @@ version: 2.1
 ### Import required orbs
 orbs:
   maven: circleci/maven@1.2.0
-  orbsdk: snappyflow/orbsdk@1.9.11
+  orbsdk: snappyflow/orbsdk@1.9.28
   vulnerability-checker: whitesource/vulnerability-checker@19.10.1
 
 ### Custom job executor
-### TODO: [Pradeep] Change private docker repository to organisation. 
+
 executors:
   circlecienv:
     docker:
-      - image: pradeep8055/circlecienv:latest
+      - image: snappyflowml/circlecienv:v2.0.0
         auth:
           username: "${DOCKERUSER}"
           password: $DOCKERPASSWORD 
@@ -21,30 +21,9 @@ executors:
 
 ### Workflow parameters
 parameters:
-  run-authenticator-job:
+  run-sfTraceServer-job:
     type: boolean
-    default: false
-  run-sfKafkaInterface-job:
-    type: boolean
-    default: false
-  run-signaturesAndKafkaApis-job:
-    type: boolean
-    default: false
-  run-schemaGenerator-job:
-    type: boolean
-    default: false
-  run-sfKafkaRest-job:
-    type: boolean
-    default: false
-  run-systemMigration-job:
-    type: boolean
-    default: false 
-  run-apmKafkaConnectors-job:
-    type: boolean
-    default: false     
-  run-archivalKafkaConnectors-job:
-    type: boolean
-    default: false      
+    default: false       
   tag-gen-command:
     type: string
     default: |
@@ -75,7 +54,7 @@ parameters:
               echo "IMAGETAG=$TAG" >> $BASH_ENV
   helm_url:
     type: string
-    default: https://github.com/Circle-CI-ML/helm-charts.git
+    default: https://github.com/Asraf-Khan-ML/helm-charts.git
   helm_branch:
     type: string
     default: master  
@@ -147,15 +126,16 @@ jobs:
              echo << pipeline.parameters.helm_url >>
              echo << pipeline.parameters.helm_branch >>
       - orbsdk/generate_helm_tar:
-          directory: "helm-charts/charts/sf-datapath"
+          directory: "charts/sfapm-python3/charts/sftrace"
           imageversion: "${IMAGETAG}"
           helmurl: << pipeline.parameters.helm_url >>
           helmbranch: << pipeline.parameters.helm_branch >>
-          dockerregistry: pradeep8055
-          chartsdir: /home/circleci/project/helm-charts/charts
-          component: sf-datapath
+          helmupdatedependency: true
+          dockerregistry: snappyflowml
+          chartsdir: /home/circleci/project/helm-charts/charts/sfapm-python3/charts/sftrace
+          component: sftrace
       - store_artifacts:
-          path: /home/circleci/project/helm-charts/charts/sf-datapath.tar.gz
+          path: /home/circleci/project/helm-charts/charts/sfapm-python3/charts/sftrace/sftrace.tar.gz
 
   ### releaseDockerTag: This job updates the docker image tags for all the sub component 
   ### basically pulls latest, retag it and push again.
@@ -173,430 +153,63 @@ jobs:
           imagetag: "${IMAGETAG}"
           snappyflowversion: "${SFTAG}"
           gitbranch: <<pipeline.git.branch>>
-          components: 'authenticator arch-kafka-connect sf-kafka-rest schema-generator apm-kafka-connect sfk-interface signatures'      
+          components: 'sftrace-server'      
   
-  ### authenticatorCodeCheck: This job does static code check, 
-  ### lint and stores the result in artifact
-  authenticatorCodeCheck:
+  ### sfTraceServerCodeCheck: This job does static code check, 
+  ### lint and stores the result in artifact.
+  sfTraceServerCodeCheck:
     executor: circlecienv
     steps:
       - checkout
       - orbsdk/static_code_check:
-          directory: authenticator
+          directory: .
       - store_artifacts:
-          path: authenticator/authenticator.txt
+          path: sftraceserver/sftraceserver.txt
   
-  ### authenticatorBuild: This job builds docker image from branches other than master and release branch
-
-  authenticatorBuild:
+  ### sfTraceServerBuild: This job builds docker image from current branch
+  ### of the repository for production.
+  sfTraceServerBuild:
     executor: ubuntumachineimage
     steps:
       - checkout
-      - run:
+      - run: 
           command: << pipeline.parameters.tag-gen-command >>
       - orbsdk/build_docker:
           dockeruser: "${DOCKERUSER}"
           dockerpassword: "${DOCKERPASSWORD}"
-          imagename: authenticator
+          imagename: sftrace-server
           imagetag: "${IMAGETAG}"
           dockerrepository: "${DOCKERUSER}"
-          appdirectory: authenticator
-          gitbranch: <<pipeline.git.branch>>
-  
-  ### sfKafkaInterfaceCodeCheck: This job does static code check, 
-  ### lint and stores the result in artifact
-  sfKafkaInterfaceCodeCheck:
-    executor: circlecienv
-    steps:
-      - checkout
-      - orbsdk/static_code_check:
-          directory: sf-kafka-interface
-      - store_artifacts:
-          path: sf-kafka-interface/sf-kafka-interface.txt
-  
-  ### sfKafkaInterfaceBuild: This job builds docker image from branches other than master and release branch
-
-  sfKafkaInterfaceBuild:
-    executor: ubuntumachineimage
-    steps:
-      - checkout
-      - run:
-          command: << pipeline.parameters.tag-gen-command >>
-      - orbsdk/build_docker:
-          dockeruser: "${DOCKERUSER}"
-          dockerpassword: "${DOCKERPASSWORD}"
-          imagename: sfk-interface
-          imagetag: "${IMAGETAG}"
-          dockerrepository: "${DOCKERUSER}"
-          appdirectory: sf-kafka-interface
-          gitbranch: <<pipeline.git.branch>>
-  
-  ### signaturesAndKafkaApisCodeCheck: This job does static code check, 
-  ### lint and stores the result in artifact
-  signaturesAndKafkaApisCodeCheck:
-    executor: circlecienv
-    steps:
-      - checkout
-      - orbsdk/static_code_check:
-          directory: signatures-and-kafka-apis
-      - store_artifacts:
-          path: signatures-and-kafka-apis/signatures-and-kafka-apis.txt
-  
-  ### signaturesAndKafkaApisBuild: This job builds docker image from branches other than master and release branch
-
-  signaturesAndKafkaApisBuild:
-    executor: ubuntumachineimage
-    steps:
-      - checkout
-      - run:
-          command: << pipeline.parameters.tag-gen-command >>
-      - orbsdk/build_docker:
-          dockeruser: "${DOCKERUSER}"
-          dockerpassword: "${DOCKERPASSWORD}"
-          imagename: signatures
-          imagetag: "${IMAGETAG}"
-          dockerrepository: "${DOCKERUSER}"
-          appdirectory: signatures-and-kafka-apis
-          gitbranch: <<pipeline.git.branch>>
-  
-  ### schemaGeneratorCodeCheck: This job does static code check, 
-  ### lint and stores the result in artifact
-  schemaGeneratorCodeCheck:
-    executor: circlecienv
-    steps:
-      - checkout
-      - orbsdk/static_code_check:
-          directory: schema-generator
-      - store_artifacts:
-          path: schema-generator/schema-generator.txt
-  
-  ### schemaGeneratorBuild: This job builds docker image from branches other than master and release branch
-
-  schemaGeneratorBuild:
-    executor: ubuntumachineimage
-    steps:
-      - checkout
-      - run:
-          command: << pipeline.parameters.tag-gen-command >>
-      - orbsdk/build_docker:
-          dockeruser: "${DOCKERUSER}"
-          dockerpassword: "${DOCKERPASSWORD}"
-          imagename: schema-generator
-          imagetag: "${IMAGETAG}"
-          dockerrepository: "${DOCKERUSER}"
-          appdirectory: schema-generator
-          gitbranch: <<pipeline.git.branch>>
-  
-  ### sfKafkaRestCodeCheck:This job does static code check, 
-  ### lint and stores the result in artifact
-  sfKafkaRestCodeCheck:
-    executor: circlecienv
-    steps:
-      - checkout
-      - orbsdk/static_code_check:
-          directory: sf-kafka-rest
-      - store_artifacts:
-          path: sf-kafka-rest/sf-kafka-rest.txt
-  
-  ### sfKafkaRestBuild: This job builds docker image from branches other than master and release branch
-
-  sfKafkaRestBuild:
-    executor: ubuntumachineimage
-    steps:
-      - checkout
-      - run:
-          command: << pipeline.parameters.tag-gen-command >>
-      - orbsdk/build_docker:
-          dockeruser: "${DOCKERUSER}"
-          dockerpassword: "${DOCKERPASSWORD}"
-          imagename: sf-kafka-rest
-          imagetag: "${IMAGETAG}"
-          dockerrepository: "${DOCKERUSER}"
-          appdirectory: sf-kafka-rest
-          gitbranch: <<pipeline.git.branch>>
-  
-  ### systemMigrationCodeCheck: This job does static code check, 
-  ### lint and stores the result in artifact
-  systemMigrationCodeCheck:
-    executor: circlecienv
-    steps:
-      - checkout
-      - orbsdk/static_code_check:
-          directory: system-migration
-      - store_artifacts:
-          path: system-migration/system-migration.txt
-  
-  ### systemMigrationBuild: This job builds docker image from branches other than master and release branch
-
-  systemMigrationBuild:
-    executor: ubuntumachineimage
-    steps:
-      - checkout
-      - run:
-          command: << pipeline.parameters.tag-gen-command >>
-      - orbsdk/build_docker:
-          dockeruser: "${DOCKERUSER}"
-          dockerpassword: "${DOCKERPASSWORD}"
-          imagename: archival-system-migration
-          imagetag: "${IMAGETAG}"
-          dockerrepository: "${DOCKERUSER}"
-          appdirectory: system-migration
-          gitbranch: <<pipeline.git.branch>>
-  
-  ### apmKafkaConnectorsCodeCheck: This job does static code check, 
-  ### lint and stores the result in artifact
-  apmKafkaConnectorsCodeCheck:
-    executor: circlecienv
-    steps:
-      - checkout
-      - orbsdk/static_code_check:
-          directory: connectors
-      - store_artifacts:
-          path: connectors/apm-kafka-connectors.txt
-  
-  ### apmKafkaConnectorsBuild: This job builds docker image from branches other than master and release branch
-
-  apmKafkaConnectorsBuild:
-    executor: ubuntumachineimage
-    steps:
-      - checkout
-      - run:
-          command: << pipeline.parameters.tag-gen-command >>
-      - run:
-          command: cp connectors/APM-Dockerfile connectors/Dockerfile          
-      - orbsdk/build_docker:
-          dockeruser: "${DOCKERUSER}"
-          dockerpassword: "${DOCKERPASSWORD}"
-          imagename: apm-kafka-connect
-          imagetag: "${IMAGETAG}"
-          dockerrepository: "${DOCKERUSER}"
-          appdirectory: connectors
-          gitbranch: <<pipeline.git.branch>>
-  
-  ### archivalKafkaConnectorsCodeCheck: This job does static code check, 
-  ### lint and stores the result in artifact
-  archivalKafkaConnectorsCodeCheck:
-    executor: circlecienv
-    steps:
-      - checkout
-      - orbsdk/static_code_check:
-          directory: connectors
-      - store_artifacts:
-          path: connectors/archival-kafka-connectors.txt
-  
-  ### archivalKafkaConnectorsBuild: This job builds docker image from branches other than master and release branch
-
-  archivalKafkaConnectorsBuild:
-    executor: ubuntumachineimage
-    steps:
-      - checkout
-      - run:
-          command: << pipeline.parameters.tag-gen-command >>
-      - run:
-          command: cp connectors/Archival-Dockerfile connectors/Dockerfile           
-      - orbsdk/build_docker:
-          dockeruser: "${DOCKERUSER}"
-          dockerpassword: "${DOCKERPASSWORD}"
-          imagename: arch-kafka-connect
-          imagetag: "${IMAGETAG}"
-          dockerrepository: "${DOCKERUSER}"
-          appdirectory: connectors
+          appdirectory: .
           gitbranch: <<pipeline.git.branch>>
 
-### Pipeline Workflows
-workflows:
-  ### authenticator: This workflow does following:
+  ### sfTraceServer: This workflow does following:
   ### 1. Opensource Vulnerability check.
   ### 2. Static_Code_Check.
   ### 3. Build Docker
-  authenticator:
+  sfTraceServer:
     when:
-      equal: [true, << pipeline.parameters.run-authenticator-job >>]
+      equal: [true, << pipeline.parameters.run-sfTraceServer-job >>]
     jobs:
       - vulnerability-checker/scan:
           name: Check_Opensource_Vulnerabilities
           context: Build_Env_Vars
-          directory: ./authenticator
-      - authenticatorCodeCheck:
-          name: Static_Code_Check
-          context: Build_Env_Vars
-          requires:
-            - Check_Opensource_Vulnerabilities
-      - authenticatorBuild:
-          name: Build_Docker
-          context: Build_Env_Vars
-          requires:
-            - Static_Code_Check
-            - Check_Opensource_Vulnerabilities
-  
-  ### sfKafkaInterface: This workflow does following:
-  ### 1. Opensource Vulnerability check.
-  ### 2. Static_Code_Check.
-  ### 3. Build Docker
-  sfKafkaInterface:
-    when:
-      equal: [true, << pipeline.parameters.run-sfKafkaInterface-job >>]
-    jobs:
-      - vulnerability-checker/scan:
-          name: Check_Opensource_Vulnerabilities
-          context: Build_Env_Vars
-          directory: ./sf-kafka-interface
-      - sfKafkaInterfaceCodeCheck:
-          name: Static_Code_Check
-          context: Build_Env_Vars
-          requires:
-            - Check_Opensource_Vulnerabilities
-      - sfKafkaInterfaceBuild:
-          name: Build_Docker
-          context: Build_Env_Vars
-          requires:
-            - Static_Code_Check
-            - Check_Opensource_Vulnerabilities
-  
-  ### signaturesAndKafkaApis: This workflow does following:
-  ### 1. Opensource Vulnerability check.
-  ### 2. Static_Code_Check.
-  ### 3. Build Docker
-  signaturesAndKafkaApis:
-    when:
-      equal: [true, << pipeline.parameters.run-signaturesAndKafkaApis-job >>]
-    jobs:
-      - vulnerability-checker/scan:
-          name: Check_Opensource_Vulnerabilities
-          context: Build_Env_Vars
-          directory: ./signatures-and-kafka-apis
-      #- signaturesAndKafkaApisCodeCheck:
-      #    name: Static_Code_Check
-      #    context: Build_Env_Vars
-      #    requires:
-      #      - Check_Opensource_Vulnerabilities
-      - signaturesAndKafkaApisBuild:
-          name: Build_Docker
-          context: Build_Env_Vars
-          requires:
-            #- Static_Code_Check
-            - Check_Opensource_Vulnerabilities
-  
-  ### schemaGenerator: This workflow does following:
-  ### 1. Opensource Vulnerability check.
-  ### 2. Static_Code_Check.
-  ### 3. Build Docker
-  schemaGenerator:
-    when:
-      equal: [true, << pipeline.parameters.run-schemaGenerator-job >>]
-    jobs:
-      - vulnerability-checker/scan:
-          name: Check_Opensource_Vulnerabilities
-          context: Build_Env_Vars
-          directory: ./schema-generator
-      - schemaGeneratorCodeCheck:
-          name: Static_Code_Check
-          context: Build_Env_Vars
-          requires:
-            - Check_Opensource_Vulnerabilities
-      - schemaGeneratorBuild:
-          name: Build_Docker
-          context: Build_Env_Vars
-          requires:
-            - Static_Code_Check
-            - Check_Opensource_Vulnerabilities
-  
-  ### sfKafkaRest: This workflow does following:
-  ### 1. Opensource Vulnerability check.
-  ### 2. Static_Code_Check.
-  ### 3. Build Docker
-  sfKafkaRest:
-    when:
-      equal: [true, << pipeline.parameters.run-sfKafkaRest-job >>]
-    jobs:
-      - vulnerability-checker/scan:
-          name: Check_Opensource_Vulnerabilities
-          context: Build_Env_Vars
-          directory: ./sf-kafka-rest
-      #- sfKafkaRestCodeCheck:
-      #    name: Static_Code_Check
-      #    context: Build_Env_Vars
-      #    requires:
-      #      - Check_Opensource_Vulnerabilities
-      - sfKafkaRestBuild:
-          name: Build_Docker
-          context: Build_Env_Vars
-          requires:
-            #- Static_Code_Check
-            - Check_Opensource_Vulnerabilities
-  
-  ### systemMigration: This workflow does following:
-  ### 1. Opensource Vulnerability check.
-  ### 2. Static_Code_Check.
-  ### 3. Build Docker
-  systemMigration:
-    when:
-      equal: [true, << pipeline.parameters.run-systemMigration-job >>]
-    jobs:
-      - vulnerability-checker/scan:
-          name: Check_Opensource_Vulnerabilities
-          context: Build_Env_Vars
-          directory: ./system-migration
-      - systemMigrationCodeCheck:
-          name: Static_Code_Check
-          context: Build_Env_Vars
-          requires:
-            - Check_Opensource_Vulnerabilities
-      - systemMigrationBuild:
-          name: Build_Docker
-          context: Build_Env_Vars
-          requires:
-            - Static_Code_Check
-            - Check_Opensource_Vulnerabilities
-  
-  ### apmKafkaConnectors: This workflow does following:
-  ### 1. Opensource Vulnerability check.
-  ### 2. Static_Code_Check.
-  ### 3. Build Docker
-  apmKafkaConnectors:
-    when:
-      equal: [true, << pipeline.parameters.run-apmKafkaConnectors-job >>]
-    jobs:
-      - vulnerability-checker/scan:
-          name: Check_Opensource_Vulnerabilities
-          context: Build_Env_Vars
+          filters: *filters
           directory: ./connectors
-      #- apmKafkaConnectorsCodeCheck:
+      #- sfTraceServerCodeCheck:
       #    name: Static_Code_Check
       #    context: Build_Env_Vars
+      #    filters: *filters
       #    requires:
       #      - Check_Opensource_Vulnerabilities
-      - apmKafkaConnectorsBuild:
+      - sfTraceServerBuild:
           name: Build_Docker
           context: Build_Env_Vars
+          filters: *filters
           requires:
             #- Static_Code_Check
             - Check_Opensource_Vulnerabilities
-  
-  ### archivalKafkaConnectors: This workflow does following:
-  ### 1. Opensource Vulnerability check.
-  ### 2. Static_Code_Check.
-  ### 3. Build Docker
-  archivalKafkaConnectors:
-    when:
-      equal: [true, << pipeline.parameters.run-archivalKafkaConnectors-job >>]
-    jobs:
-      - vulnerability-checker/scan:
-          name: Check_Opensource_Vulnerabilities
-          context: Build_Env_Vars
-          directory: ./connectors
-      #- archivalKafkaConnectorsCodeCheck:
-      #    name: Static_Code_Check
-      #    context: Build_Env_Vars
-      #    requires:
-      #      - Check_Opensource_Vulnerabilities
-      - archivalKafkaConnectorsBuild:
-          name: Build_Docker
-          context: Build_Env_Vars
-          requires:
-            #- Static_Code_Check
-            - Check_Opensource_Vulnerabilities
-  
+
   ### release:  This workflow does following:
   ### 1. Wait for other workflows to complete
   ### 2. Retag Subcomponents, bump version
@@ -617,4 +230,4 @@ workflows:
       - updateBaseRevision:
           context: Build_Env_Vars
           requires:
-            - generateTar        
+            - generateTar
