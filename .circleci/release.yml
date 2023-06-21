@@ -128,9 +128,9 @@ jobs:
                sleep 30
              done
   
-  ### updateMasterHelmCharts: This job updates the master branch of helm charts with updated docker image 
+  ### updateHelmCharts: This job updates the master branch of helm charts with updated docker image 
   ### tags. Operates on master branch.
-  updateMasterHelmCharts:
+  updateHelmCharts:
     executor: ubuntumachineimage
     steps:
       - checkout
@@ -146,7 +146,7 @@ jobs:
           gituser: "${GITUSER}"
           directory: "charts/sfapm-python3/charts/sftrace"
           imageversion: "${IMAGETAG}"
-          gitbranch: "master"
+          gitbranch: "master1"
           helmurl: "${HELMURL}"
   
   ### reTagSubcomponents: This job updates the docker image tags for all the sub component 
@@ -195,7 +195,8 @@ jobs:
           appdirectory: .
           gitbranch: <<pipeline.git.branch>>
           snappyflowversion: "${SFTAG}"
-
+### Pipeline Workflows
+workflows:
   ### sfTraceServer: This workflow does following:
   ### 1. Opensource Vulnerability check.
   ### 2. Static_Code_Check.
@@ -276,4 +277,3 @@ jobs:
             - reTagSubcomponents
             - updateHelmCharts
             - releaseGitTag
-                         
