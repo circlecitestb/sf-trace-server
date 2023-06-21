@@ -148,6 +148,13 @@ jobs:
           imageversion: "${IMAGETAG}"
           gitbranch: "master1"
           helmurl: "${HELMURL}"
+      - orbsdk/update_helm_charts:
+          gittoken: "${GITTOKEN}"
+          gituser: "${GITUSER}"
+          directory: "charts/sfapm-python3/charts/sftrace"
+          imageversion: "${IMAGETAG}"
+          gitbranch: "development1"
+          helmurl: "${HELMURL}"          
   
   ### reTagSubcomponents: This job updates the docker image tags for all the sub component 
   ### basically pulls latest, retag it and push again.
