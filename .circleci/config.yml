@@ -27,7 +27,7 @@ parameters:
             .* run-sfTraceServer-job true
   helm_url:
     type: string
-    default: https://github.com/Asraf-Khan-ML/helm-charts.git
+    default: https://github.com/snappyflow/helm-charts.git
   helm_branch:
     type: string
     default: master  

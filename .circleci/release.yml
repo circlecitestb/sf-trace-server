@@ -130,24 +130,24 @@ jobs:
   
   ### updateMasterHelmCharts: This job updates the master branch of helm charts with updated docker image 
   ### tags. Operates on master branch.
-  updateMasterHelmCharts:
-    executor: ubuntumachineimage
-    steps:
-      - checkout
-      - run: 
-          command: << pipeline.parameters.tag-gen-command >>
-      - run:
-          command: |
-            URL=https://${GITTOKEN}@github.com/Asraf-Khan-ML/helm-charts.git
-            echo "HELMURL=$URL" >> $BASH_ENV
-            pwd
-      - orbsdk/update_helm_charts:
-          gittoken: "${GITTOKEN}"
-          gituser: "${GITUSER}"
-          directory: "charts/sfapm-python3/charts/sftrace"
-          imageversion: "${IMAGETAG}"
-          gitbranch: "master1"
-          helmurl: "${HELMURL}"   
+###  updateMasterHelmCharts:
+###    executor: ubuntumachineimage
+###    steps:
+###      - checkout
+###      - run: 
+###          command: << pipeline.parameters.tag-gen-command >>
+###      - run:
+###          command: |
+###            URL=https://${GITTOKEN}@github.com/snappyflow/helm-charts.git
+###            echo "HELMURL=$URL" >> $BASH_ENV
+###            pwd
+###      - orbsdk/update_helm_charts:
+###          gittoken: "${GITTOKEN}"
+###          gituser: "${GITUSER}"
+###          directory: "charts/sfapm-python3/charts/sftrace"
+###          imageversion: "${IMAGETAG}"
+###          gitbranch: "master"
+###          helmurl: "${HELMURL}"   
   ### updateHelmCharts: This job updates the development branch of helm charts with updated docker image 
   ### tags. Operates on development branch.
   updateDevelopmentHelmCharts:
@@ -158,7 +158,7 @@ jobs:
           command: << pipeline.parameters.tag-gen-command >>
       - run:
           command: |
-            URL=https://${GITTOKEN}@github.com/Asraf-Khan-ML/helm-charts.git
+            URL=https://${GITTOKEN}@github.com/snappyflow/helm-charts.git
             echo "HELMURL=$URL" >> $BASH_ENV
             pwd
       - orbsdk/update_helm_charts:
@@ -166,7 +166,7 @@ jobs:
           gituser: "${GITUSER}"
           directory: "charts/sfapm-python3/charts/sftrace"
           imageversion: "${IMAGETAG}"
-          gitbranch: "development1"
+          gitbranch: "development"
           helmurl: "${HELMURL}"                
   
   ### reTagSubcomponents: This job updates the docker image tags for all the sub component 
@@ -268,7 +268,7 @@ workflows:
           filters: *filters
           workflowid: ${CIRCLE_WORKFLOW_ID}
           ccitoken: ${CIRCLE_CI_TOKEN}
-          approvers: 'Aman-Singh-ML Pradeep-G-ML srivathsa-mugalodi-ML'
+          approvers: 'Aman-Singh-ML Pradeep-G-ML srivathsa-mugalodi-ML Sai-Devireddy-ML Nagarjuna-B-ML'
           requires:
             - wait
             - Waiting_For_Approval            
@@ -278,13 +278,13 @@ workflows:
           requires:
             - wait   
             - Verifying_Approver                
-      - updateMasterHelmCharts:
-          context: Build_Env_Vars
-          filters: *filters
-          requires:
-            - wait
-            - Verifying_Approver
-            - reTagSubcomponents
+###      - updateMasterHelmCharts:
+###          context: Build_Env_Vars
+###          filters: *filters
+###          requires:
+###            - wait
+###            - Verifying_Approver
+###            - reTagSubcomponents
       - updateDevelopmentHelmCharts:
           context: Build_Env_Vars
           filters: *filters

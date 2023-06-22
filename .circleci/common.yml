@@ -54,7 +54,7 @@ parameters:
               echo "IMAGETAG=$TAG" >> $BASH_ENV
   helm_url:
     type: string
-    default: https://github.com/Asraf-Khan-ML/helm-charts.git
+    default: https://github.com/snappyflow/helm-charts.git
   helm_branch:
     type: string
     default: master  
@@ -131,7 +131,7 @@ jobs:
           helmurl: << pipeline.parameters.helm_url >>
           helmbranch: << pipeline.parameters.helm_branch >>
           helmupdatedependency: true
-          dockerregistry: snappyflowml
+          dockerregistry: "${DOCKERUSER}"
           chartsdir: /home/circleci/project/helm-charts/charts/sfapm-python3/charts/sftrace
           component: sftrace
       - store_artifacts:
